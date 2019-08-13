@@ -6,9 +6,11 @@
 #options(java.parameters = "-Xmx16g" )
 #require(rJava)
 #require(XLConnect)
+
+devtools::install_github("bmtglobal/epower")
 require(epower)
 
-#setwd("C:/Users/rfisher/Dropbox/EPower/Toobox_paper_draft1/Examples")
+setwd("C:/Users/rfisher/OneDrive - Australian Institute of Marine Science/Documents/AIMS/EcologicalRiskModelling/EPower/epower_examples")
 #fitData(excelInFile="Most_complex_simulated.xlsx") # takes a while to run
 
 
@@ -22,6 +24,7 @@ assessPower()
 
 
 ### example using only R to interface with the package
+require(epower)
 dat<-read.csv("epower_interface_V1.3_pilot_data.csv")
 
 dataComponents<-supplyData(
@@ -59,7 +62,7 @@ dataComponents<-supplyData(
 # now run powerScenario
 require(INLA,quietly=TRUE)
 scenarioParams<-powerScenario(inputData=dataComponents)
-
+assessPower()
 
 
 
