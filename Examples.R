@@ -75,26 +75,10 @@ dataComponents<-supplyData(
       Fixed.change=0,
       Effect.values=-0.3))
 
-# now run powerScenario to fit the inla model to the pilot data and generate the posterior sample that will be used in the simulations.
+# now run powerScenario
 require(INLA,quietly=TRUE)
-#ptm <- proc.time()
-#inputData=dataComponents
-#source(textConnection(readLines("C:/Users/rfisher/OneDrive - Australian Institute of Marine Science/Documents/AIMS/EcologicalRiskModelling/EPower/epower/R/Toolbox_run.r")[962:1200]))
-
-
-scenarioParams2<- scenarioTerms
-time.2 <- proc.time() - ptm
-
-unique(hyperpar.sample[,"Precision for repID"])
-ptm <- proc.time()
 scenarioParams<-powerScenario(inputData=dataComponents)
-time.1 <- proc.time() - ptm
-
-
-
-
-
-#assessPower()
+assessPower()
 
 
 
