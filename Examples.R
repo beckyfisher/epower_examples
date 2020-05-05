@@ -26,7 +26,7 @@
 devtools::install_github("bmtglobal/epower")
 require(epower)
 
-setwd("C:/Users/rfisher/OneDrive - Australian Institute of Marine Science/Documents/AIMS/EcologicalRiskModelling/EPower/epower_examples")
+
 #fitData(excelInFile="Most_complex_simulated.xlsx") # takes a while to run
 
 fitData(excelInFile="DBCA_fixed_transect_Tantabiddi.xlsx")
@@ -51,7 +51,7 @@ dataComponents<-supplyData(
       Location="Site",
       sublocation="Replicate",
       Time="SurveyID",
-      "subtime"=NA,
+      subtime=NA,
       BvA="BvA",
       CvI="CvI"),
   levels.dat=list(
@@ -74,10 +74,27 @@ dataComponents<-supplyData(
       Multiplicative=1,
       Fixed.change=0,
       Effect.values=-0.3))
-# now run powerScenario
+
+# now run powerScenario to fit the inla model to the pilot data and generate the posterior sample that will be used in the simulations.
 require(INLA,quietly=TRUE)
+#ptm <- proc.time()
+#inputData=dataComponents
+#source(textConnection(readLines("C:/Users/rfisher/OneDrive - Australian Institute of Marine Science/Documents/AIMS/EcologicalRiskModelling/EPower/epower/R/Toolbox_run.r")[962:1200]))
+
+
+scenarioParams2<- scenarioTerms
+time.2 <- proc.time() - ptm
+
+unique(hyperpar.sample[,"Precision for repID"])
+ptm <- proc.time()
 scenarioParams<-powerScenario(inputData=dataComponents)
-assessPower()
+time.1 <- proc.time() - ptm
+
+
+
+
+
+#assessPower()
 
 
 
